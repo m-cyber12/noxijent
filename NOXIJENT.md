@@ -16,9 +16,13 @@ Every phase lands on branch `arena/01a0b024-noxijent` as its own commit set and
 must pass GitHub Actions (`ci` workflow: typecheck + unit tests + lint) before
 the next phase starts.
 
-- [ ] Phase 0 — Rebrand to Noxijent (name, logo, theme, README) + CI bootstrap
-- [ ] Phase 1 — Foundation: agent worktrees, checkpoints, structured events,
+- [x] Phase 0 — Rebrand to Noxijent (name, logo, theme, README) + CI drafted
+      (`tools/noxijent-workflows/ci.yml`; activation pending GitHub `workflows`
+      permission on the pushing app — see "GitHub Actions gate" below)
+- [x] Phase 1 — Foundation: agent worktrees, checkpoints, structured events,
       Definition of Done, test/fix/verify loop, risk-based action policies
+      (`packages/opencode/src/noxijent/`, 45 unit tests, CLI: `worktree`,
+      `checkpoint`, `events`, `done`, `verify`, `risk`)
 - [ ] Phase 2 — Intelligence: agent manager, execution graph, repository
       understanding, context engine, project memory, contradiction detector
 - [ ] Phase 3 — Reliability: red-team reviewer, issue reproduction, code
@@ -35,3 +39,16 @@ the next phase starts.
 - Internal workspace package scope `@opencode-ai/*` is intentionally kept so
   the build graph and lockfile stay intact; user-facing naming moves to
   Noxijent.
+- Runtime state lives in `.noxijent/state/` (self-ignored via a nested
+  `.gitignore`); repository contracts (definition of done, risk policies)
+  live in `.noxijent/*.jsonc` and are meant to be committed.
+
+## GitHub Actions gate
+
+The CI workflow is ready at `tools/noxijent-workflows/ci.yml` (typecheck +
+unit tests + scoped oxlint, GitHub-hosted `ubuntu-latest` runners). The
+GitHub App used to push this branch currently lacks the `workflows`
+permission, so the file cannot land in `.github/workflows/` from the agent
+session. Reconnect GitHub in Arena (or copy the file into
+`.github/workflows/` with a token that has the `workflow` scope) to activate
+per-phase CI runs.
