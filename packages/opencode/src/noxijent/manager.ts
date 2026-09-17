@@ -169,6 +169,7 @@ export function report(graph: Graph) {
       status: node.status,
       attempts: node.attempts,
       error: node.error,
+      result: node.result,
     })),
   }
 }

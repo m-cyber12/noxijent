@@ -51,6 +51,13 @@ import {
   ReplayCommand,
   ReproCommand,
 } from "./cli/cmd/noxijent-reliability"
+import {
+  HooksCommand,
+  ProfileCommand,
+  RouteCommand,
+  TournamentCommand,
+  WorkflowCommand,
+} from "./cli/cmd/noxijent-orchestrate"
 import { Heap } from "./cli/heap"
 
 const args = hideBin(process.argv)
@@ -140,6 +147,11 @@ const cli = yargs(args)
   .command(RedteamCommand)
   .command(ReproCommand)
   .command(BenchmarkCommand)
+  .command(ProfileCommand)
+  .command(HooksCommand)
+  .command(RouteCommand)
+  .command(TournamentCommand)
+  .command(WorkflowCommand)
   .command(DbCommand)
   .fail((msg, err) => {
     if (

@@ -31,8 +31,11 @@ the next phase starts.
       archaeology, task replay, flight recorder, benchmark mode (139 unit
       tests across 18 files; CLI: `flight`, `replay`, `archaeology`,
       `redteam`, `repro`, `benchmark`)
-- [ ] Phase 4 — Advanced orchestration: dynamic agent teams, model routing,
-      model tournament, workflow engine, agent profiles, agent hooks
+- [x] Phase 4 — Advanced orchestration: dynamic agent teams with failure
+      escalation, local model routing, model tournament, workflow engine,
+      agent profiles, agent hooks (183 unit tests across 24 files; CLI:
+      `profile`, `hooks`, `route`, `tournament`, `workflow`; dynamic teams
+      ship as the runtime `teams` module used by the manager)
 
 ## Notes
 
@@ -50,6 +53,12 @@ the next phase starts.
   scenarios defined in the committable `.noxijent/evals/<name>/scenario.json`.
   Repro scaffolds land in `.noxijent/state/repro/` for promotion into the
   test tree once they reproduce the bug.
+- Orchestration contracts (all committable JSON): `.noxijent/profiles/`
+  (agent definitions), `.noxijent/hooks.json` (lifecycle hook commands with
+  block/warn policies), `.noxijent/models.json` (model catalog overrides),
+  `.noxijent/workflows/<name>.json` (step DAGs executed by the workflow
+  engine). Runtime artifacts (tournaments, workflow runs, graphs) stay in
+  `.noxijent/state/`.
 - Internal workspace package scope `@opencode-ai/*` is intentionally kept so
   the build graph and lockfile stay intact; user-facing naming moves to
   Noxijent.
