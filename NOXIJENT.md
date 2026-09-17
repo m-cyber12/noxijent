@@ -23,8 +23,10 @@ the next phase starts.
       Definition of Done, test/fix/verify loop, risk-based action policies
       (`packages/opencode/src/noxijent/`, 45 unit tests, CLI: `worktree`,
       `checkpoint`, `events`, `done`, `verify`, `risk`)
-- [ ] Phase 2 — Intelligence: agent manager, execution graph, repository
+- [x] Phase 2 — Intelligence: agent manager + execution graph, repository
       understanding, context engine, project memory, contradiction detector
+      (`packages/opencode/src/noxijent/`, 91 unit tests across 13 modules,
+      CLI: `understand`, `context`, `plan`, `memory`, `contradictions`)
 - [ ] Phase 3 — Reliability: red-team reviewer, issue reproduction, code
       archaeology, task replay, flight recorder, benchmark mode
 - [ ] Phase 4 — Advanced orchestration: dynamic agent teams, model routing,
@@ -36,6 +38,10 @@ the next phase starts.
   under `packages/opencode/test/noxijent/`. Modules are self-contained (stdlib
   + zod only) so they are fast to test and typecheck, and are wired into the
   CLI additively (new commands only — existing flows are untouched).
+- Project memory lives in `.noxijent/memory.json` (sorted by key, committable).
+  Context snapshots and execution graphs persist under
+  `.noxijent/state/context/` and `.noxijent/state/graphs/` — runtime state
+  stays inside the self-ignored `state/` tree.
 - Internal workspace package scope `@opencode-ai/*` is intentionally kept so
   the build graph and lockfile stay intact; user-facing naming moves to
   Noxijent.

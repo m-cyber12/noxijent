@@ -36,6 +36,13 @@ import {
   VerifyCommand,
   WorktreeCommand,
 } from "./cli/cmd/noxijent"
+import {
+  ContextCommand,
+  ContradictionsCommand,
+  MemoryCommand,
+  PlanCommand,
+  UnderstandCommand,
+} from "./cli/cmd/noxijent-intel"
 import { Heap } from "./cli/heap"
 
 const args = hideBin(process.argv)
@@ -114,6 +121,11 @@ const cli = yargs(args)
   .command(DoneCommand)
   .command(VerifyCommand)
   .command(RiskCommand)
+  .command(UnderstandCommand)
+  .command(ContextCommand)
+  .command(PlanCommand)
+  .command(MemoryCommand)
+  .command(ContradictionsCommand)
   .command(DbCommand)
   .fail((msg, err) => {
     if (
