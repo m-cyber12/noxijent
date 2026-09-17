@@ -1,0 +1,74 @@
+# This is the Noxijent CI workflow.
+#
+# It lives here (not in .github/workflows/) because the GitHub App token used
+# to push this branch currently lacks the `workflows` permission. To activate
+# CI, copy this file to .github/workflows/ci.yml (any user token with the
+# `workflow` scope can do it):
+#
+#   mkdir -p .github/workflows
+#   cp tools/noxijent-workflows/ci.yml .github/workflows/ci.yml
+#   git add .github/workflows/ci.yml && git commit -m "chore: enable ci"
+#
+name: ci
+
+on:
+  push:
+    branches: [main, "arena/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Setup Bun
+        uses: ./.github/actions/setup-bun
+
+      - name: Run typecheck
+        run: bun typecheck
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Setup Bun
+        uses: ./.github/actions/setup-bun
+
+      - name: Configure git identity
+        run: |
+          git config --global user.email "bot@noxijent.dev"
+          git config --global user.name "noxijent"
+
+      - name: Run unit tests
+        working-directory: packages/opencode
+        run: bun test --timeout 30000
+        env:
+          CI: true
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Setup Bun
+        uses: ./.github/actions/setup-bun
+
+      - name: Run oxlint
+        run: bunx oxlint packages/opencode/src packages/opencode/test packages/tui/src --config .oxlintrc.json
