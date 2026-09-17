@@ -1,3 +1,4 @@
 repo   https://github.com/anomalyco/opencode.git
 ref    5a8335857b0ebec44ef6aa1d52b339cf25c329ca
-synced 2026-09-17T15:45:00Z
+label  dev (2026-09-17)
+synced 2026-09-17T15:50:00Z
