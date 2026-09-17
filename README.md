@@ -39,6 +39,11 @@
 > نکته: چون پوشه‌های تست حذف شده‌اند، دستورهای `bun test` / `test:*` طبعاً چیزی برای اجرا ندارند؛
 > بقیه‌ی دستورها (build، dev، typecheck، lint) بدون تغییر کار می‌کنند.
 >
+> **تنها استثنا:** فایل‌های `.github/workflows/` (۲۶ فایل CI) در `tools/upstream-workflows/` نگه داشته شده‌اند،
+> چون توکن GitHubی که این اسنپ‌شات با آن push شده اجازه‌ی نوشتن در مسیر workflows را ندارد.
+> برای برگرداندن‌شان کافی است: `mkdir -p .github/workflows && cp tools/upstream-workflows/*.yml .github/workflows/`
+> هیچ فایل دیگری جابه‌جا یا حذف نشده است.
+>
 > برای همگام‌سازی مجدد با upstream: `tools/sync-upstream.sh` (کامیت فعلی در `tools/opencode-upstream.txt`).
 
 ---
