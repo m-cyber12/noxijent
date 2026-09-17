@@ -1,72 +1,149 @@
-# noxijent — بخش ایجنت و هارنس پروژه opencode
+<!-- snapshot notice: this repository is a filtered copy of anomalyco/opencode -->
+> ## این ریپو چیست؟
+>
+> یک **کپی از پروژه‌ی [opencode](https://github.com/anomalyco/opencode)** است که فقط با
+> **حذف READMEهای اضافه و تست‌ها** ساخته شده. بقیه‌ی پروژه دست‌نخورده است و مثل خود
+> upstream نصب و اجرا می‌شود.
+>
+> | مورد | مقدار |
+> | --- | --- |
+> | مخزن اصلی | https://github.com/anomalyco/opencode |
+> | شاخه | `dev` |
+> | کامیت | `5a8335857b0ebec44ef6aa1d52b339cf25c329ca` (2026-09-17) |
+> | لایسنس | MIT (فایل [`LICENSE`](./LICENSE) دست‌نخورده است) |
+>
+> **چه چیزی حذف شده:** همه‌ی تست‌ها (`test/`, `e2e/`, `*.test.ts`, `*.spec.ts`, snapshots، fixtures)
+> و READMEهای فرعی (ترجمه‌های `README.<lang>.md` و README هر پکیج). فقط همین `README.md` باقی مانده.
+> هیچ فایل سورس، پرامپت، اسکریپت یا تنظیمی حذف نشده است.
+>
+> ### نصب و اجرا از سورس
+>
+> ```bash
+> git clone https://github.com/m-cyber12/noxijent.git
+> cd noxijent
+>
+> bun --version        # باید bun 1.3.14 یا بالاتر باشد (نسخه‌ی پین‌شده در package.json)
+> bun install          # نصب کل dependencyها (همان lockfile اصلی، --frozen-lockfile هم کار می‌کند)
+>
+> bun dev              # اجرای ایجنت (TUI) از سورس
+> bun dev:web          # اجرای وب‌اپ
+> bun dev:desktop      # اجرای اپ دسکتاپ
+> bun run typecheck    # بررسی تایپ‌ها
+> bun run lint         # لینت
+> ```
+>
+> اگر bun ندارید: `curl -fsSL https://bun.sh/install | bash` (ویندوز: `powershell -c "irm bun.sh/install.ps1 | iex"`).
+> برای نصب نسخه‌ی منتشرشده (بدون سورس) هم می‌توانید از `curl -fsSL https://opencode.ai/install | bash`
+> یا `npm i -g opencode-ai@latest` استفاده کنید.
+>
+> نکته: چون پوشه‌های تست حذف شده‌اند، دستورهای `bun test` / `test:*` طبعاً چیزی برای اجرا ندارند؛
+> بقیه‌ی دستورها (build، dev، typecheck، lint) بدون تغییر کار می‌کنند.
+>
+> برای همگام‌سازی مجدد با upstream: `tools/sync-upstream.sh` (کامیت فعلی در `tools/opencode-upstream.txt`).
 
-این ریپو یک **اسنپ‌شات فیلترشده** از پروژه‌ی [opencode](https://github.com/anomalyco/opencode) است.
-فقط فایل‌هایی کپی شده‌اند که به **ایجنت (agent)** و **هارنس (harness)** مربوط‌اند؛
-رابط‌های کاربری، وب‌سایت، کنسول ابری، SDK، تست‌ها و READMEهای بی‌ربط منتقل نشده‌اند.
+---
 
-## منبع (upstream)
+<p align="center">
+  <a href="https://opencode.ai">
+    <picture>
+      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
+      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
+      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="OpenCode logo">
+    </picture>
+  </a>
+</p>
+<p align="center">The open source AI coding agent.</p>
+<p align="center">
+  <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
+  <a href="https://www.npmjs.com/package/opencode-ai"><img alt="npm" src="https://img.shields.io/npm/v/opencode-ai?style=flat-square" /></a>
+  <a href="https://github.com/anomalyco/opencode/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev" /></a>
+</p>
 
-| مورد | مقدار |
-| --- | --- |
-| مخزن | https://github.com/anomalyco/opencode |
-| شاخه | `dev` |
-| کامیت | `5a8335857b0ebec44ef6aa1d52b339cf25c329ca` |
-| تاریخ کامیت | 2026-09-17 |
-| لایسنس | MIT — فایل [`LICENSE`](LICENSE) عیناً از upstream کپی شده است |
+[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)
 
-## چه چیزی داخل این ریپو هست
+---
 
-| مسیر | فایل | توضیح |
-| --- | --- | --- |
-| `packages/core` | ۳۲۶ | **هسته‌ی هارنس**: اجرای سشن (`session/runner`, `session/compaction`, `session/context-epoch`)، ابزارها (`tool/`)، پرامپت و context سیستمی (`system-context/`)، permission، skill، provider، plugin، پایگاه‌داده و migrationها، filesystem و git |
-| `packages/opencode` | ۴۰۷ | **خود ایجنت کدنویس**: `src/agent` (تعریف ایجنت‌ها + پرامپت‌های agent)، `src/session` (حلقه‌ی مکالمه، LLM، پرامپت‌ها، compaction، reminder)، `src/tool` (read/write/edit/bash/glob/grep/task/webfetch/…)، `src/permission`، `src/provider`، `src/plugin`، `src/mcp`، `src/acp`، `src/lsp`، `src/skill`، `src/config`، سرور هارنس (`src/server`) و لایه‌ی CLI (`src/cli` — بدون TUI) |
-| `packages/llm` | ۵۸ | کلاینت LLM مستقل از provider (پروتکل‌های Anthropic/OpenAI/…، route، tool-runtime) که هارنس از آن استفاده می‌کند |
-| `packages/schema` | ۶۶ | قراردادهای پیام، ابزار، ایجنت، permission و رخدادها |
-| `packages/plugin` | ۳۹ | API افزونه/هوک ایجنت (`src/v2/effect`, `src/v2/promise`) |
-| `packages/protocol` | ۲۴ | قراردادهای HTTP API هارنس |
-| `packages/server` | ۳۰ | هندلرهای سرور هارنس (session، agent، message، permission، question، skill، …) |
-| `packages/effect-drizzle-sqlite` | ۲۱ | آداپتر sqlite/drizzle که لایه‌ی ذخیره‌سازی هارنس روی آن سوار است |
-| `.opencode` | ۳۹ | تنظیمات ایجنت خود پروژه: `agent/` (triage، duplicate-pr)، `command/`، `skills/` (effect، rtl-aware-development)، `tool/`، `plugins/`، `glossary/`، `opencode.jsonc` |
-| `AGENTS.md` | — | دستورهای ایجنت/مشارکت‌کننده‌ی پروژه (شامل قواعد کد ایجنت) |
-| `CONTEXT.md` | — | سند طراحی هارنس: واژگان و معماری session runtime / system context |
-| `packages/opencode/specs` | — | اسناد طراحی داخلی ایجنت و ران‌تایم (`effect/`, `v2/`) |
-| `tools/` | ۲ | اسکریپت همگام‌سازی و ثبت کامیت upstream |
-
-ساختار پوشه‌ها **عیناً مثل upstream** است تا مقایسه‌ی کد با مخزن اصلی ساده بمانَد.
-
-### نقطه‌های شروع پیشنهادی برای خواندن کد
-
-1. `packages/core/src/session/runner/llm.ts` — حلقه‌ی اصلی ایجنت در هسته
-2. `packages/core/src/session/prompt.ts` و `packages/core/src/system-context/` — ساخت context و پرامپت
-3. `packages/opencode/src/session/llm.ts`, `session/prompt.ts`, `session/processor.ts` — ران‌تایم نسل فعلی
-4. `packages/opencode/src/tool/registry.ts` و فایل‌های کنار آن (`*.txt` = توضیح ابزار برای مدل)
-5. `packages/opencode/src/agent/agent.ts` + `agent/prompt/*.txt` — ساخت ایجنت‌ها و پرامپت‌های سیستمی
-6. `packages/opencode/src/permission/` — مدل اجازه‌دهی ابزارها
-
-## چه چیزی منتقل **نشده** است
-
-- رابط‌های کاربری: `packages/app` (وب), `packages/desktop`, `packages/tui`, `packages/session-ui`, `packages/ui`, `packages/web`, `packages/storybook`, `packages/docs`
-- بخش‌های ابری/تجاری: `packages/console` (کنسول، billing، zen gateway)، `packages/enterprise`, `packages/identity`, `packages/stats`, `packages/slack`
-- جنبه‌های غیرمرتبط با ایجنت در `packages/opencode/src`: `control-plane`, `account`, `share`, `installation`, `ide` و دستورهای CLI مربوط به آن‌ها (`account`, `stats`, `web`, `uninstall`, `upgrade`)
-- پکیج‌های ابزاری/تولیدی: `sdk`, `sdk-next`, `client`, `codemode`, `http-recorder`, `httpapi-codegen`, `script`, `infra`, `nix`, `containers`, `artifacts`, `github`, `sdks`, `perf`, `patches`
-- **همه‌ی تست‌ها**: هر پوشه‌ی `test/`, `tests/`, `e2e/`, `fixtures/` و فایل‌های `*.test.ts` / `*.spec.ts`
-- READMEهای بی‌ربط: `README.md` ریشه‌ی upstream و تمام `README.<lang>.md`ها، `CONTRIBUTING.md`, `SECURITY.md`, `STATS.md`, `screenshot-uk.png` و همچنین READMEهای هر پکیج
-
-## نکته‌های مهم
-
-- این کد **یک چک‌اوت کامل و build-able نیست**؛ چون UIها/SDK/تست‌ها حذف شده‌اند، بعضی ایمپورت‌ها به پکیج‌های حذف‌شده (`@opencode-ai/tui`, `@opencode-ai/sdk`, `@opencode-ai/console*`, `@opencode-ai/codemode`) در این اسنپ‌شات resolve نمی‌شوند. برای build واقعی باید با upstream کامل کار کرد.
-- لایسنس پروژه MIT است؛ در استفاده‌ی مجدد، فایل `LICENSE` و اشاره به upstream را نگه دارید.
-
-## همگام‌سازی مجدد با upstream
+### Installation
 
 ```bash
-# از کامیت پین‌شده‌ی داخل script کلون می‌کند
-tools/sync-opencode.sh
+# YOLO
+curl -fsSL https://opencode.ai/install | bash
 
-# یا از یک چک‌اوت محلی موجود
-tools/sync-opencode.sh --source /path/to/opencode
+# Package managers
+npm i -g opencode-ai@latest        # or bun/pnpm/yarn
+scoop install opencode             # Windows
+choco install opencode             # Windows
+brew install anomalyco/tap/opencode # macOS and Linux (recommended, always up to date)
+brew install opencode              # macOS and Linux (official brew formula, updated less)
+sudo pacman -S opencode            # Arch Linux (Stable)
+paru -S opencode-bin               # Arch Linux (Latest from AUR)
+mise use -g opencode               # Any OS
+nix run nixpkgs#opencode           # or github:anomalyco/opencode for latest dev branch
 ```
 
-کامیت و تاریخ آخرین همگام‌سازی در `tools/opencode-upstream.txt` ثبت می‌شود.
-فهرست فایل‌های ورودی/خروجی همان‌جا در `tools/sync-opencode.sh` تعریف شده است؛
-اگر می‌خواهید بخشی کم یا زیاد شود، فقط همان لیست‌ها را ویرایش و اسکریپت را دوباره اجرا کنید.
+> [!TIP]
+> Remove versions older than 0.1.x before installing.
+
+### Desktop App (BETA)
+
+OpenCode is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/opencode/releases) or [opencode.ai/download](https://opencode.ai/download).
+
+| Platform              | Download                           |
+| --------------------- | ---------------------------------- |
+| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |
+| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |
+| Windows               | `opencode-desktop-windows-x64.exe` |
+| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |
+
+```bash
+# macOS (Homebrew)
+brew install --cask opencode-desktop
+# Windows (Scoop)
+scoop bucket add extras; scoop install extras/opencode-desktop
+```
+
+#### Installation Directory
+
+The install script respects the following priority order for the installation path:
+
+1. `$OPENCODE_INSTALL_DIR` - Custom installation directory
+2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
+3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)
+4. `$HOME/.opencode/bin` - Default fallback
+
+```bash
+# Examples
+OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opencode.ai/install | bash
+XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opencode.ai/install | bash
+```
+
+### Agents
+
+OpenCode includes two built-in agents you can switch between with the `Tab` key.
+
+- **build** - Default, full-access agent for development work
+- **plan** - Read-only agent for analysis and code exploration
+  - Denies file edits by default
+  - Asks permission before running bash commands
+  - Ideal for exploring unfamiliar codebases or planning changes
+
+Also included is a **general** subagent for complex searches and multistep tasks.
+This is used internally and can be invoked using `@general` in messages.
+
+Learn more about [agents](https://opencode.ai/docs/agents).
+
+### Documentation
+
+For more info on how to configure OpenCode, [**head over to our docs**](https://opencode.ai/docs).
+
+### Contributing
+
+If you're interested in contributing to OpenCode, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
+
+### Building on OpenCode
+
+If you are working on a project that's related to OpenCode and is using "opencode" as part of its name, for example "opencode-dashboard" or "opencode-mobile", please add a note to your README to clarify that it is not built by the OpenCode team and is not affiliated with us in any way.
+
+---
+
+**Join our community** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
