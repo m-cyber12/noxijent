@@ -43,6 +43,14 @@ import {
   PlanCommand,
   UnderstandCommand,
 } from "./cli/cmd/noxijent-intel"
+import {
+  ArchaeologyCommand,
+  BenchmarkCommand,
+  FlightCommand,
+  RedteamCommand,
+  ReplayCommand,
+  ReproCommand,
+} from "./cli/cmd/noxijent-reliability"
 import { Heap } from "./cli/heap"
 
 const args = hideBin(process.argv)
@@ -126,6 +134,12 @@ const cli = yargs(args)
   .command(PlanCommand)
   .command(MemoryCommand)
   .command(ContradictionsCommand)
+  .command(FlightCommand)
+  .command(ReplayCommand)
+  .command(ArchaeologyCommand)
+  .command(RedteamCommand)
+  .command(ReproCommand)
+  .command(BenchmarkCommand)
   .command(DbCommand)
   .fail((msg, err) => {
     if (

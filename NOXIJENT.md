@@ -27,8 +27,10 @@ the next phase starts.
       understanding, context engine, project memory, contradiction detector
       (`packages/opencode/src/noxijent/`, 91 unit tests across 13 modules,
       CLI: `understand`, `context`, `plan`, `memory`, `contradictions`)
-- [ ] Phase 3 — Reliability: red-team reviewer, issue reproduction, code
-      archaeology, task replay, flight recorder, benchmark mode
+- [x] Phase 3 — Reliability: red-team reviewer, issue reproduction, code
+      archaeology, task replay, flight recorder, benchmark mode (139 unit
+      tests across 18 files; CLI: `flight`, `replay`, `archaeology`,
+      `redteam`, `repro`, `benchmark`)
 - [ ] Phase 4 — Advanced orchestration: dynamic agent teams, model routing,
       model tournament, workflow engine, agent profiles, agent hooks
 
@@ -42,6 +44,12 @@ the next phase starts.
   Context snapshots and execution graphs persist under
   `.noxijent/state/context/` and `.noxijent/state/graphs/` — runtime state
   stays inside the self-ignored `state/` tree.
+- Reliability state: flight timelines and replay records under
+  `.noxijent/state/flight/` and `.noxijent/state/replay/`; benchmark runs in
+  `.noxijent/state/benchmark/` (`latest.json` + timestamped history) with
+  scenarios defined in the committable `.noxijent/evals/<name>/scenario.json`.
+  Repro scaffolds land in `.noxijent/state/repro/` for promotion into the
+  test tree once they reproduce the bug.
 - Internal workspace package scope `@opencode-ai/*` is intentionally kept so
   the build graph and lockfile stay intact; user-facing naming moves to
   Noxijent.
