@@ -1,5 +1,5 @@
 {
-  description = "OpenCode development flake";
+  description = "Noxijent development flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -39,11 +39,11 @@
             };
           in
           rec {
-            opencode = final.callPackage ./nix/opencode.nix {
+            noxijent = final.callPackage ./nix/noxijent.nix {
               inherit node_modules;
             };
-            opencode-desktop = final.callPackage ./nix/desktop.nix {
-              inherit opencode;
+            noxijent-desktop = final.callPackage ./nix/desktop.nix {
+              inherit noxijent;
             };
           };
       };
@@ -56,12 +56,12 @@
           };
         in
         rec {
-          default = opencode;
-          opencode = pkgs.callPackage ./nix/opencode.nix {
+          default = noxijent;
+          noxijent = pkgs.callPackage ./nix/noxijent.nix {
             inherit node_modules;
           };
-          opencode-desktop = pkgs.callPackage ./nix/desktop.nix {
-            inherit opencode;
+          noxijent-desktop = pkgs.callPackage ./nix/desktop.nix {
+            inherit noxijent;
           };
           # Updater derivation with fakeHash - build fails and reveals correct hash
           node_modules_updater = node_modules.override {

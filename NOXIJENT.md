@@ -36,6 +36,18 @@ the next phase starts.
       agent profiles, agent hooks (183 unit tests across 24 files; CLI:
       `profile`, `hooks`, `route`, `tournament`, `workflow`; dynamic teams
       ship as the runtime `teams` module used by the manager)
+- [x] Repo-wide identity purge: every `opencode` token (all casings:
+      opencode/Opencode/OpenCode/openCode/OPENCODE) mechanically swapped to
+      Noxijent across all 2,200+ text files; package renamed
+      `packages/opencode` → `packages/noxijent` (package name `noxijent`,
+      binary `noxijent`); all `opencode` paths renamed (`.noxijent/`,
+      `nix/noxijent.nix`, brand assets, vendor archives); lockfiles made
+      token-consistent. Kept as-is per scope: LICENSE attribution text and
+      third-party published packages (`opencode-agent`,
+      `opencode-gitlab-auth`/`@gitlab/opencode-gitlab-auth`,
+      `opencode-poe-auth`); binary brand archives renamed but not re-authored,
+      and the historical upstream `opencode` color theme was dropped from the
+      TUI theme set (the `noxijent` theme is the brand theme).
 
 ## Notes
 

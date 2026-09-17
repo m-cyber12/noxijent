@@ -15,11 +15,11 @@
 
 ---
 
-Noxijent is a fork of the [opencode](https://github.com/sst/opencode) harness
-(snapshot of `anomalyco/opencode@dev`, commit
+Noxijent is a fork of the [noxijent](https://github.com/sst/noxijent) harness
+(snapshot of `anomalyco/noxijent@dev`, commit
 `5a8335857b0ebec44ef6aa1d52b339cf25c329ca`), rebranded and extended with an
 orchestration-first feature set implemented phase by phase from
-[`opencode-code-only-roadmap.md`](./opencode-code-only-roadmap.md):
+[`noxijent-code-only-roadmap.md`](./noxijent-code-only-roadmap.md):
 
 ```text
 Task
@@ -51,7 +51,7 @@ Progress per phase is tracked in [`NOXIJENT.md`](./NOXIJENT.md).
 
 ## Highlights
 
-- **Everything opencode already does**: TUI coding agent, multi-provider model
+- **Everything noxijent already does**: TUI coding agent, multi-provider model
   support, LSP, MCP, sessions, share, and more.
 - **Foundation layer**: per-agent git worktrees, checkpoints/time-machine,
   structured agent events, definition-of-done as code, automatic
@@ -86,10 +86,10 @@ If you don't have bun: `curl -fsSL https://bun.sh/install | bash`.
 ## Testing
 
 New Noxijent functionality ships with unit tests under
-`packages/opencode/test/`. Run them with:
+`packages/noxijent/test/`. Run them with:
 
 ```bash
-bun --cwd packages/opencode test
+bun --cwd packages/noxijent test
 ```
 
 Every phase is gated by GitHub Actions (`.github/workflows/ci.yml`):
@@ -97,11 +97,11 @@ typecheck, unit tests, and scoped lint must pass before the next phase begins.
 
 ## Provenance
 
-- Upstream project: `anomalyco/opencode` (`dev` branch), MIT license (see
+- Upstream project: `anomalyco/noxijent` (`dev` branch), MIT license (see
   [`LICENSE`](./LICENSE), unchanged).
 - This snapshot intentionally shipped without upstream tests; Noxijent adds its
   own test suite incrementally.
 - Upstream CI files are preserved in `tools/upstream-workflows/`;
   Noxijent maintains its own workflow set adapted to this repository.
 - To re-sync with upstream: `tools/sync-upstream.sh` (pinned commit in
-  `tools/opencode-upstream.txt`).
+  `tools/noxijent-upstream.txt`).

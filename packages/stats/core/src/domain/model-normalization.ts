@@ -21,14 +21,14 @@ export const MODEL_NAME_ALIASES: Record<string, string> = {
   "deepseek-flash": "deepseek-v4.1-flash",
   "deepseek-v4-flash-0731": "deepseek-v4-flash",
   "deepseek-v4-flash-dsv4-flash-final-rnaovd": "deepseek-v4-flash",
-  "opencode-go/union-alpha": "union-alpha",
-  "opencode/union-alpha": "union-alpha",
+  "noxijent-go/union-alpha": "union-alpha",
+  "noxijent/union-alpha": "union-alpha",
   "ox-alpha": "glm-5.3-flash",
   "x-preview-f": "glm-5.3-flash",
   "xiaomi/mimo-v2.5": "mimo-v2.5",
 }
 export const RETIRED_STAT_MODELS = ["big-pickle", ...Object.keys(MODEL_NAME_ALIASES)]
-export const RETIRED_STAT_PROVIDERS = ["opencode"]
+export const RETIRED_STAT_PROVIDERS = ["noxijent"]
 
 export function normalizeInferenceModel(value: string | undefined) {
   return (value || "unknown").toLowerCase().replace(/(-free|:free|:global)+$/, "") || "unknown"
