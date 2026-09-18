@@ -1,28 +1,32 @@
+// The Persian locale intentionally renders English: all Persian content was
+// replaced with English per project decision (see commit history).
 export const dict = {
-  "desktop.menu.checkForUpdates": "بررسی به روز رسانی...",
-  "desktop.menu.installCli": "نصب CLI...",
-  "desktop.menu.reloadWebview": "بارگذاری مجدد Webview",
-  "desktop.menu.restart": "راه اندازی مجدد",
-  "desktop.dialog.chooseFolder": "یک پوشه را انتخاب کنید",
-  "desktop.dialog.chooseFile": "یک فایل را انتخاب کنید",
-  "desktop.dialog.saveFile": "ذخیره فایل",
-  "desktop.updater.checkFailed.title": "بررسی به‌روزرسانی انجام نشد",
-  "desktop.updater.checkFailed.message": "بررسی به‌روزرسانی‌ها انجام نشد",
-  "desktop.updater.none.title": "به روز رسانی موجود نیست",
-  "desktop.updater.none.message": "شما در حال حاضر از آخرین نسخه OpenCode استفاده می کنید",
-  "desktop.updater.downloadFailed.title": "به روز رسانی انجام نشد",
-  "desktop.updater.downloadFailed.message": "به روز رسانی دانلود نشد",
-  "desktop.updater.downloaded.title": "به روز رسانی دانلود شد",
+  "desktop.menu.checkForUpdates": "Check for Updates...",
+  "desktop.menu.installCli": "Install CLI...",
+  "desktop.menu.reloadWebview": "Reload Webview",
+  "desktop.menu.restart": "Restart",
+
+  "desktop.dialog.chooseFolder": "Choose a folder",
+  "desktop.dialog.chooseFile": "Choose a file",
+  "desktop.dialog.saveFile": "Save file",
+
+  "desktop.updater.checkFailed.title": "Update Check Failed",
+  "desktop.updater.checkFailed.message": "Failed to check for updates",
+  "desktop.updater.none.title": "No Update Available",
+  "desktop.updater.none.message": "You are already using the latest version of Noxijent",
+  "desktop.updater.downloadFailed.title": "Update Failed",
+  "desktop.updater.downloadFailed.message": "Failed to download update",
+  "desktop.updater.downloaded.title": "Update Downloaded",
   "desktop.updater.downloaded.prompt":
-    "نسخه {{version}} OpenCode دانلود شده است، آیا می خواهید آن را نصب کنید و دوباره راه اندازی کنید؟",
-  "desktop.updater.installFailed.title": "به روز رسانی انجام نشد",
-  "desktop.updater.installFailed.message": "به روز رسانی نصب نشد",
-  "desktop.cli.installed.title": "CLI نصب شده است",
-  "desktop.cli.installed.message":
-    "CLI روی {{path}} نصب شد\n\nترمینال خود را مجددا راه اندازی کنید تا از دستور 'opencode' استفاده کنید.",
-  "desktop.cli.failed.title": "نصب ناموفق بود",
-  "desktop.cli.failed.message": "CLI نصب نشد: {{error}}",
+    "Version {{version}} of Noxijent has been downloaded, would you like to install it and relaunch?",
+  "desktop.updater.installFailed.title": "Update Failed",
+  "desktop.updater.installFailed.message": "Failed to install update",
+
+  "desktop.cli.installed.title": "CLI Installed",
+  "desktop.cli.installed.message": "CLI installed to {{path}}\n\nRestart your terminal to use the 'noxijent' command.",
+  "desktop.cli.failed.title": "Installation Failed",
+  "desktop.cli.failed.message": "Failed to install CLI: {{error}}",
 
   "desktop.error.dev.rootNotFound":
-    "عنصر ریشه یافت نشد. آیا فراموش کرده اید که آن را به index.html خود اضافه کنید؟ یا شاید ویژگی id اشتباه املایی داشته باشد؟",
+    "Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?",
 }

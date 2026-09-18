@@ -10,14 +10,14 @@
   autoPatchelfHook,
   copyDesktopItems,
   makeDesktopItem,
-  opencode,
+  noxijent,
 }:
 let
   electron = electron_41;
 in
 stdenv.mkDerivation (finalAttrs: {
-  pname = "opencode-desktop";
-  inherit (opencode)
+  pname = "noxijent-desktop";
+  inherit (noxijent)
     version
     src
     node_modules
@@ -44,16 +44,16 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   desktopItems = lib.optional stdenv.hostPlatform.isLinux (makeDesktopItem {
-    name = "ai.opencode.desktop";
-    desktopName = "OpenCode";
-    exec = "opencode-desktop %U";
-    icon = "ai.opencode.desktop";
+    name = "ai.noxijent.desktop";
+    desktopName = "Noxijent";
+    exec = "noxijent-desktop %U";
+    icon = "ai.noxijent.desktop";
     # Electron 41 derives X11 WM_CLASS from app.name.
-    startupWMClass = "OpenCode";
+    startupWMClass = "Noxijent";
     categories = [ "Development" ];
   });
 
-  env = opencode.env // {
+  env = noxijent.env // {
     ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
   };
 
@@ -71,7 +71,7 @@ stdenv.mkDerivation (finalAttrs: {
       FILES=(src/main/windows.ts)
       for file in "''${FILES[@]}"; do
         substituteInPlace $BASE_PATH/$file \
-          --replace-fail "process.resourcesPath" "'$out/opt/opencode-desktop/resources'"
+          --replace-fail "process.resourcesPath" "'$out/opt/noxijent-desktop/resources'"
       done
     '';
 
@@ -104,27 +104,27 @@ stdenv.mkDerivation (finalAttrs: {
   + lib.optionalString stdenv.hostPlatform.isDarwin ''
     mkdir -p $out/Applications
     mv dist/mac*/*.app $out/Applications
-    makeWrapper "$out/Applications/OpenCode.app/Contents/MacOS/OpenCode" $out/bin/opencode-desktop
+    makeWrapper "$out/Applications/Noxijent.app/Contents/MacOS/Noxijent" $out/bin/noxijent-desktop
   ''
   + lib.optionalString stdenv.hostPlatform.isLinux ''
-    mkdir -p $out/opt/opencode-desktop
-    cp -r dist/linux*-unpacked/{resources,LICENSE*} $out/opt/opencode-desktop
+    mkdir -p $out/opt/noxijent-desktop
+    cp -r dist/linux*-unpacked/{resources,LICENSE*} $out/opt/noxijent-desktop
     install -Dm644 resources/icons/32x32.png \
-      "$out/share/icons/hicolor/32x32/apps/ai.opencode.desktop.png"
+      "$out/share/icons/hicolor/32x32/apps/ai.noxijent.desktop.png"
     install -Dm644 resources/icons/64x64.png \
-      "$out/share/icons/hicolor/64x64/apps/ai.opencode.desktop.png"
+      "$out/share/icons/hicolor/64x64/apps/ai.noxijent.desktop.png"
     install -Dm644 resources/icons/128x128.png \
-      "$out/share/icons/hicolor/128x128/apps/ai.opencode.desktop.png"
+      "$out/share/icons/hicolor/128x128/apps/ai.noxijent.desktop.png"
     install -Dm644 resources/icons/128x128@2x.png \
-      "$out/share/icons/hicolor/256x256/apps/ai.opencode.desktop.png"
+      "$out/share/icons/hicolor/256x256/apps/ai.noxijent.desktop.png"
     install -Dm644 resources/icons/icon.png \
-      "$out/share/icons/hicolor/512x512/apps/ai.opencode.desktop.png"
-    install -Dm644 resources/ai.opencode.desktop.metainfo.xml \
-      "$out/share/metainfo/ai.opencode.desktop.metainfo.xml"
-    makeWrapper ${lib.getExe electron} $out/bin/opencode-desktop \
+      "$out/share/icons/hicolor/512x512/apps/ai.noxijent.desktop.png"
+    install -Dm644 resources/ai.noxijent.desktop.metainfo.xml \
+      "$out/share/metainfo/ai.noxijent.desktop.metainfo.xml"
+    makeWrapper ${lib.getExe electron} $out/bin/noxijent-desktop \
      --inherit-argv0 \
      --set ELECTRON_FORCE_IS_PACKAGED 1 \
-     --add-flags $out/opt/opencode-desktop/resources/app.asar \
+     --add-flags $out/opt/noxijent-desktop/resources/app.asar \
      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
   ''
   + ''
@@ -136,8 +136,8 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   meta = {
-    description = "OpenCode Desktop App";
-    mainProgram = "opencode-desktop";
-    inherit (opencode.meta) homepage license platforms;
+    description = "Noxijent Desktop App";
+    mainProgram = "noxijent-desktop";
+    inherit (noxijent.meta) homepage license platforms;
   };
 })

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Noxijent
+Exec=/opt/Noxijent/ai.noxijent.desktop %U
+Terminal=false
+Type=Application
+Icon=ai.noxijent.desktop
+StartupWMClass=ai.noxijent.desktop
+NoDisplay=true
+Comment=Open source AI coding agent
+Categories=Development;

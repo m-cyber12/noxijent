@@ -1,11 +1,11 @@
 import type { APIEvent } from "@solidjs/start/server"
-import { and, Database, eq, isNull } from "@opencode-ai/console-core/drizzle/index.js"
-import { BillingTable, LiteTable } from "@opencode-ai/console-core/schema/billing.sql.js"
-import { KeyTable } from "@opencode-ai/console-core/schema/key.sql.js"
-import { UserTable } from "@opencode-ai/console-core/schema/user.sql.js"
-import { WorkspaceTable } from "@opencode-ai/console-core/schema/workspace.sql.js"
-import { LiteData } from "@opencode-ai/console-core/lite.js"
-import { Subscription } from "@opencode-ai/console-core/subscription.js"
+import { and, Database, eq, isNull } from "@noxijent-ai/console-core/drizzle/index.js"
+import { BillingTable, LiteTable } from "@noxijent-ai/console-core/schema/billing.sql.js"
+import { KeyTable } from "@noxijent-ai/console-core/schema/key.sql.js"
+import { UserTable } from "@noxijent-ai/console-core/schema/user.sql.js"
+import { WorkspaceTable } from "@noxijent-ai/console-core/schema/workspace.sql.js"
+import { LiteData } from "@noxijent-ai/console-core/lite.js"
+import { Subscription } from "@noxijent-ai/console-core/subscription.js"
 import { inferenceUnavailable, proxyInference } from "~/lib/inference-proxy"
 
 export async function GET(input: APIEvent) {
@@ -101,7 +101,7 @@ export async function GET(input: APIEvent) {
         type: "error",
         error: {
           type: "EntitlementError",
-          message: "OpenCode Go subscription required.",
+          message: "Noxijent Go subscription required.",
         },
       }),
       {

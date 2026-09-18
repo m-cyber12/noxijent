@@ -1,11 +1,11 @@
 {
-  "name": "@opencode-ai/ui",
+  "name": "@noxijent-ai/ui",
   "version": "1.18.31",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/anomalyco/noxijent.git",
     "directory": "packages/ui"
   },
   "publishConfig": {

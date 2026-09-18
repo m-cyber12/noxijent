@@ -1,0 +1,47 @@
+{
+  "$schema": "https://noxijent.ai/desktop-theme.json",
+  "name": "Noxijent Ember",
+  "id": "noxijent-ember",
+  "light": {
+    "palette": {
+      "neutral": "#fff8e1",
+      "ink": "#2b0d00",
+      "primary": "#c21f00",
+      "accent": "#e8a800",
+      "success": "#a87400",
+      "warning": "#d35400",
+      "error": "#c81f0a",
+      "info": "#b07e00",
+      "diffAdd": "#c79400",
+      "diffDelete": "#d94a3a"
+    },
+    "overrides": {
+      "syntax-comment": "#8a5a24",
+      "syntax-keyword": "#c21f00",
+      "syntax-primitive": "#b01e10",
+      "syntax-property": "#a87400",
+      "syntax-constant": "#d35400"
+    }
+  },
+  "dark": {
+    "palette": {
+      "neutral": "#120404",
+      "ink": "#fff0c2",
+      "primary": "#ffdf3d",
+      "accent": "#ffd60a",
+      "success": "#d4a017",
+      "warning": "#ff6b1a",
+      "error": "#ff453a",
+      "info": "#f4c21e",
+      "diffAdd": "#f4c21e",
+      "diffDelete": "#ff5a4e"
+    },
+    "overrides": {
+      "syntax-comment": "#a06a2a",
+      "syntax-keyword": "#ff3b30",
+      "syntax-primitive": "#ffd60a",
+      "syntax-property": "#f4c21e",
+      "syntax-constant": "#ff6b1a"
+    }
+  }
+}
