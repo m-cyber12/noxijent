@@ -1,9 +1,9 @@
 # Noxijent Upgrade Tracker
 
-Noxijent is an agentic software-engineering runtime forked from the opencode
-harness. It keeps opencode's model/provider flexibility and adds orchestration,
+Noxijent is an agentic software-engineering runtime built on the Noxijent
+harness. It keeps the unbranded terminal harness's model/provider flexibility and adds orchestration,
 verification, memory, and reliability layers on top, following
-`opencode-code-only-roadmap.md`.
+`noxijent-code-only-roadmap.md`.
 
 Central design principle:
 
@@ -21,11 +21,11 @@ the next phase starts.
       permission on the pushing app — see "GitHub Actions gate" below)
 - [x] Phase 1 — Foundation: agent worktrees, checkpoints, structured events,
       Definition of Done, test/fix/verify loop, risk-based action policies
-      (`packages/opencode/src/noxijent/`, 45 unit tests, CLI: `worktree`,
+      (`packages/noxijent/src/noxijent/`, 45 unit tests, CLI: `worktree`,
       `checkpoint`, `events`, `done`, `verify`, `risk`)
 - [x] Phase 2 — Intelligence: agent manager + execution graph, repository
       understanding, context engine, project memory, contradiction detector
-      (`packages/opencode/src/noxijent/`, 91 unit tests across 13 modules,
+      (`packages/noxijent/src/noxijent/`, 91 unit tests across 13 modules,
       CLI: `understand`, `context`, `plan`, `memory`, `contradictions`)
 - [x] Phase 3 — Reliability: red-team reviewer, issue reproduction, code
       archaeology, task replay, flight recorder, benchmark mode (139 unit
@@ -51,8 +51,8 @@ the next phase starts.
 
 ## Notes
 
-- New functionality lives in `packages/opencode/src/noxijent/` with unit tests
-  under `packages/opencode/test/noxijent/`. Modules are self-contained (stdlib
+- New functionality lives in `packages/noxijent/src/noxijent/` with unit tests
+  under `packages/noxijent/test/noxijent/`. Modules are self-contained (stdlib
   + zod only) so they are fast to test and typecheck, and are wired into the
   CLI additively (new commands only — existing flows are untouched).
 - Project memory lives in `.noxijent/memory.json` (sorted by key, committable).
@@ -71,9 +71,8 @@ the next phase starts.
   `.noxijent/workflows/<name>.json` (step DAGs executed by the workflow
   engine). Runtime artifacts (tournaments, workflow runs, graphs) stay in
   `.noxijent/state/`.
-- Internal workspace package scope `@opencode-ai/*` is intentionally kept so
-  the build graph and lockfile stay intact; user-facing naming moves to
-  Noxijent.
+- Internal workspace scope is `@noxijent-ai/*` everywhere (packages,
+  binary, config dirs, lockfile) — nothing user-facing answers to the old name.
 - Runtime state lives in `.noxijent/state/` (self-ignored via a nested
   `.gitignore`); repository contracts (definition of done, risk policies)
   live in `.noxijent/*.jsonc` and are meant to be committed.

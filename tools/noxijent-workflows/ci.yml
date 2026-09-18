@@ -31,7 +31,7 @@ jobs:
       - name: Run typecheck
         # Scoped to the harness package (deterministic gate for noxijent
         # deliverables); repo-wide turbo typecheck spans unrelated packages.
-        run: bun run --cwd packages/opencode typecheck
+        run: bun run --cwd packages/noxijent typecheck
 
   test:
     name: test
@@ -50,7 +50,7 @@ jobs:
 
       - name: Run unit tests
         # Noxijent phase suites live under test/noxijent/ and run offline.
-        working-directory: packages/opencode
+        working-directory: packages/noxijent
         run: bun test --timeout 30000 test/noxijent/
         env:
           CI: true
@@ -66,4 +66,4 @@ jobs:
         uses: ./.github/actions/setup-bun
 
       - name: Run oxlint
-        run: bunx oxlint packages/opencode/src packages/opencode/test packages/tui/src --config .oxlintrc.json
+        run: bunx oxlint packages/noxijent/src packages/noxijent/test packages/tui/src --config .oxlintrc.json

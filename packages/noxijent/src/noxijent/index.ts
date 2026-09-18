@@ -1,5 +1,5 @@
 // Noxijent — orchestration, verification, and reliability layers on top of
-// the opencode harness. See NOXIJENT.md at the repository root for the
+// the Noxijent harness. See NOXIJENT.md at the repository root for the
 // roadmap and per-phase status.
 
 export * as Paths from "./paths"

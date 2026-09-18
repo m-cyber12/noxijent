@@ -21,8 +21,8 @@ import monokai from "./assets/monokai.json" with { type: "json" }
 import nightowl from "./assets/nightowl.json" with { type: "json" }
 import nord from "./assets/nord.json" with { type: "json" }
 import noxijent from "./assets/noxijent.json" with { type: "json" }
+import noxijentEmber from "./assets/noxijent-ember.json" with { type: "json" }
 import onedark from "./assets/one-dark.json" with { type: "json" }
-import noxijent from "./assets/noxijent.json" with { type: "json" }
 import orng from "./assets/orng.json" with { type: "json" }
 import osakaJade from "./assets/osaka-jade.json" with { type: "json" }
 import palenight from "./assets/palenight.json" with { type: "json" }
@@ -151,7 +151,7 @@ export const DEFAULT_THEMES: Record<string, ThemeJson> = {
   ["one-dark"]: onedark,
   ["osaka-jade"]: osakaJade,
   noxijent,
-  noxijent,
+  ["noxijent-ember"]: noxijentEmber,
   orng,
   ["lucent-orng"]: lucentOrng,
   palenight,
