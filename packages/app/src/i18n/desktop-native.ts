@@ -103,7 +103,7 @@ export const DESKTOP_NATIVE_LABELS: Record<DesktopNativeLocale, string> = {
   dz: "རྫོང་ཁ",
   el: "Ελληνικά",
   et: "Eesti",
-  fa: "فارسی",
+  fa: "Persian",
   fo: "Føroyskt",
   hr: "Hrvatski",
   hu: "Magyar",

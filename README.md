@@ -15,10 +15,9 @@
 
 ---
 
-Noxijent is a fork of the [noxijent](https://github.com/sst/noxijent) harness
-(snapshot of `anomalyco/noxijent@dev`, commit
-`5a8335857b0ebec44ef6aa1d52b339cf25c329ca`), rebranded and extended with an
-orchestration-first feature set implemented phase by phase from
+Noxijent builds on a snapshot of an open-source terminal coding-agent harness
+(base commit `5a8335857b0ebec44ef6aa1d52b339cf25c329ca`), rebranded and extended
+with an orchestration-first feature set implemented phase by phase from
 [`noxijent-code-only-roadmap.md`](./noxijent-code-only-roadmap.md):
 
 ```text
