@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="packages/console/app/src/asset/logo-ornate-dark.svg" alt="Noxijent logo" width="320">
-</p>
+
 
 <h1 align="center">Noxijent</h1>
 
